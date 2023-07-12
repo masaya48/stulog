@@ -1,4 +1,5 @@
 import { serverComponentClient } from '@/libs/supabase'
+import Link from 'next/link'
 import { ButtonWrapper } from '../_components/ButtonWrapper'
 import { SignOutButton } from '../_components/SignOutButton'
 
@@ -19,6 +20,9 @@ export default async function LogsPage() {
         </ul>) : <p>nothing yet</p>}
         <ButtonWrapper>
           <SignOutButton />
+        </ButtonWrapper>
+        <ButtonWrapper>
+          <Link href="/logs/new">+ add new log</Link>
         </ButtonWrapper>
     </>
   )

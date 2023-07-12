@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { Header } from './_components/Header'
 import { Main } from './_components/Main'
+import React from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,8 +13,10 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  modal: React.ReactNode,
 }) {
   return (
     <html lang="ja">
@@ -21,6 +24,7 @@ export default function RootLayout({
         <Header />
         <Main>
           {children}
+          {modal}
         </Main>
       </body>
     </html>
