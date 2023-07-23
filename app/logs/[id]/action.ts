@@ -1,8 +1,9 @@
-import { Database } from "@/libs/database.types"
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs"
-import { revalidatePath } from "next/cache"
-import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
+import { Database } from '@/libs/database.types'
+import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
+import { revalidatePath } from 'next/cache'
+import { RedirectType } from 'next/dist/client/components/redirect'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export const createLog = async (formData: FormData) => {
   'use server'
@@ -16,5 +17,5 @@ export const createLog = async (formData: FormData) => {
 
   await supabase.from('logs').insert({title, content, user_id: data.user.id})
   revalidatePath('/logs')
-  redirect('/logs')
+  redirect('/logs', RedirectType.replace)
 }
