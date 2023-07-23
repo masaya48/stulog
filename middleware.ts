@@ -7,6 +7,8 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   const supabase = createMiddlewareClient({ req, res })
   const {data} = await supabase.auth.getUser()
+  console.log('in middleware');
+  
   if (!data.user) {
     return NextResponse.redirect(new URL('/signin', req.url))
   }
