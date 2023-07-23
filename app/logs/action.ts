@@ -8,6 +8,7 @@ import { cookies } from 'next/headers'
 export const signOut = async () => {
   const supabase = createServerActionClient({cookies})
   await supabase.auth.signOut()
+  revalidatePath('/signin')
 }
 
 export const deleteLog = async (id: string) => {

@@ -7,10 +7,13 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   const supabase = createMiddlewareClient({ req, res })
   const {data} = await supabase.auth.getUser()
-  console.log('in middleware');
   
-  if (!data.user) {
+  if (req.nextUrl.pathname !== '/signin' && !data.user) {
     return NextResponse.redirect(new URL('/signin', req.url))
+  }
+  
+  if (req.nextUrl.pathname === '/signin' && data.user) {
+    return NextResponse.redirect(new URL('/logs', req.url))
   }
   return res
 }
@@ -18,6 +21,7 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     '/logs',
-    '/logs/:path*'
+    '/logs/:path*',
+    '/signin'
   ]
 }
