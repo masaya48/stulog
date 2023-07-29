@@ -24,7 +24,7 @@ export default function RootLayout({
         <Header />
         <Main>
           {children}
-          {modal}
+          {modal && modal}
         </Main>
       </body>
     </html>

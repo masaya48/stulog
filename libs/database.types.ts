@@ -13,7 +13,7 @@ export interface Database {
         Row: {
           content: string | null
           created_at: string | null
-          id: number
+          id: string
           title: string
           updated_at: string | null
           user_id: string
@@ -21,7 +21,7 @@ export interface Database {
         Insert: {
           content?: string | null
           created_at?: string | null
-          id?: number
+          id?: string
           title: string
           updated_at?: string | null
           user_id: string
@@ -29,7 +29,7 @@ export interface Database {
         Update: {
           content?: string | null
           created_at?: string | null
-          id?: number
+          id?: string
           title?: string
           updated_at?: string | null
           user_id?: string

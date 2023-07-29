@@ -8,8 +8,9 @@ import { RemoveLog } from './RemoveLog'
 
 export default async function LogsPage() {
   const serverComponentClient = createServerComponentClient<Database>({ cookies })
-  const { data: user } = await serverComponentClient.auth.getUser()
-  const { data: logs } = await serverComponentClient.from('logs').select('*').eq('user_id', user?.user?.id)
+  const { data } = await serverComponentClient.auth.getUser()
+  if (!data.user) throw new Error('Not found user')
+  const { data: logs } = await serverComponentClient.from('logs').select('*').eq('user_id', data.user.id)
 
   return (
     <>
